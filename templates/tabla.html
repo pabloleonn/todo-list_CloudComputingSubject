@@ -1,0 +1,30 @@
+{% block head %}
+    <title>Task master</title>
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>Task</th>
+        <th>Added</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.content }}</td>
+        <td>{{ task.date_created.date() }}</td>
+        <td>
+            <a href="/delete/{{ task._id }}">Delete</a>
+            <a href="/update/{{ task._id }}">Update</a>
+        </td>
+    {% endfor %}
+</table>
+
+<form action="/" method="POST">
+    <input type="text" name="content" id="content" placeholder="New task">
+    <input type="submit" value="Add task">
+</form>
+
+{% endblock %}
